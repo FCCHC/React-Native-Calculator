@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, Text} from 'react-native';
 
-import Style from 'src/StyleSheet';
+import Style from '/home/creatur/Documentos/react-native/ReactCalculator/src/StyleSheet.js';
 
 export default class InputButton extends Component {
    render() {
