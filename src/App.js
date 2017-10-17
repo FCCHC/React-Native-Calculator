@@ -30,7 +30,7 @@ export default class ReactCalculator extends Component<{}> {
       previousInputValue: 0,
       inputValue: 0,
       selectedSymbol: null,
-      decimal: null
+      decimal: false
     }
   }
 
@@ -80,12 +80,12 @@ export default class ReactCalculator extends Component<{}> {
      case '*':
      case '+':
      case '-':
+     case '.':
          this.setState({
            selectedSymbol: str,
-           previousInputValue: this.state.inputValue,
-           inputValue: 0
+           previousInputValue: this.state.selectedSymbol === '.' ? this.state.inputValue + '.' : this.state.inputValue ,
+           inputValue: this.state.selectedSymbol === '.'? this.state.inputValue + '.': 0
          });
-         break;
 
      case '=':
          let symbol = this.state.selectedSymbol,
@@ -102,17 +102,7 @@ export default class ReactCalculator extends Component<{}> {
                selectedSymbol: null
           });
 
-          break;
-
-      case '.':
-
-           this.setState({
-             decimal: true,
-             selectedSymbol: str,
-             previousInputValue:this.state.inputValue
-           })
-
-           break;
+              break;
 
       case 'CE':
            this.setState({
@@ -121,19 +111,19 @@ export default class ReactCalculator extends Component<{}> {
              selectedSymbol: null,
              decimal: null
            })
-          break;
 
+              break;
       case 'C':
-               let input = this.state.inputValue
+               let input = this.state.inputValue,
                    previous = this.state.previousInputValue
-                   str = this.state.selectedSymbol
+
           this.setState({
              inputValue:previous,
              previousInputValue: input,
              selectedSymbol: str
           })
 
-       break;
+             break;
 
    }
  }
